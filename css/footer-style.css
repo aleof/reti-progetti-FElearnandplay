@@ -1,0 +1,75 @@
+footer{
+        border: solid; 
+        height: 203px;
+        clear: both;
+        background-color: black;
+        /*position: relative;*/
+      
+}
+.footerButton{
+    background-color: black; 
+    color: gainsboro;
+    font: small-caps;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.footerForm{
+    float:right;
+}
+/*PROVA PROVA PROVA*/
+.footerDiv300{/*js*/
+    /*margin-left: 10%;
+    margin-right: 10%;
+    /*float: left;*/
+    height: auto;
+    width: auto;
+    margin: 0 auto;
+    border: solid;
+    border-color: yellow;
+    /*aggiungi che gli elementi al suo interno siano centrati-questo per gli elemnti interni*/
+}
+.div300{
+    width: 40%;
+    height: auto;
+    margin-right: auto;
+    margin-left:auto;
+    border:solid;
+    border-color: yellow;
+}
+/*FINE PROVA PROVA PROVA*/
+.footerDiv{
+    height: auto;
+    width: 100%;
+    display:inline-block;
+    overflow: auto;
+}
+.RDiv{
+    width: 40%;
+    height: auto;
+    margin-right: 20px;
+    float: right;
+}
+.LDiv{
+    width: 40%;
+    height: auto;
+    margin-left: 20px;
+    margin-bottom: 25px;
+    float: left;
+}
+.CDiv{
+    width: 10%;
+    height: auto;
+    margin: 0 auto; 
+}
+.testo{
+    color: white;
+    text-decoration: none;
+}
+a{
+    color: gainsboro;
+}
