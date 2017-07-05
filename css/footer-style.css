@@ -1,13 +1,15 @@
 footer{
-        border: solid; 
+        border: none;
+        /*border-color: darkslategrey; */
         height: 203px;
-        clear: both;
-        background-color: black;
+        margin-bottom: 0;
+        /*clear: both;*/
+        /*background-color: darkslategrey;*/
         /*position: relative;*/
-      
+        background-image: url("../img/grafite.jpg");
+        
 }
 .footerButton{
-    background-color: black; 
     color: gainsboro;
     font: small-caps;
     border: none;
@@ -38,38 +40,62 @@ footer{
     height: auto;
     margin-right: auto;
     margin-left:auto;
-    border:solid;
-    border-color: yellow;
+    /*border:solid;
+    border-color: yellow;*/
 }
 /*FINE PROVA PROVA PROVA*/
 .footerDiv{
     height: auto;
     width: 100%;
-    display:inline-block;
+    display:inline-block;/**VERIFICA QUI*/
+    vertical-align: bottom;
     overflow: auto;
+    padding-bottom: 50px;
+    border-top: solid;
 }
 .RDiv{
     width: 40%;
     height: auto;
-    margin-right: 20px;
-    float: right;
+    float: left;
+    margin-right: auto;/*2%*/
+    margin-top: 20px;
+    text-align: right;
+    
+    /*border:solid;
+    border-color: yellow;*/ 
 }
 .LDiv{
     width: 40%;
     height: auto;
-    margin-left: 20px;
-    margin-bottom: 25px;
     float: left;
+    margin-left: 4%;/*4%*/
+    margin-bottom: 25px;
+    
+    /*border:solid;
+    border-color: yellow;*/
 }
 .CDiv{
     width: 10%;
     height: auto;
-    margin: 0 auto; 
+    float:left;
+    /*padding: auto;*/
+    /*margin: 0 auto;*/
+    margin-top: 20px;
+    
+    display:table-cell; vertical-align:middle; text-align:center;/*centrare l'immagine*/
+
+
+    /*border:solid;
+    border-color: yellow;*/
 }
 .testo{
     color: white;
     text-decoration: none;
 }
+.link:hover{
+    color:grey;
+}
 a{
-    color: gainsboro;
+   border:none;
+   text-decoration: none;
 }
