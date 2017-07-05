@@ -1,13 +1,13 @@
 footer{
-        border: none;
-        /*border-color: darkslategrey; */
-        height: 203px;
-        margin-bottom: 0;
-        /*clear: both;*/
-        /*background-color: darkslategrey;*/
-        /*position: relative;*/
-        background-image: url("../img/grafite.jpg");
-        
+    border: none;
+    height: auto;
+    width:100%;
+    margin-bottom: 0;
+    background-image: url("../img/grafite.jpg");  
+    /*border-color: darkslategrey; */
+    /*clear: both;*/
+    /*background-color: darkslategrey;*/
+    /*position: relative;*/  
 }
 .footerButton{
     color: gainsboro;
@@ -23,6 +23,57 @@ footer{
 .footerForm{
     float:right;
 }
+.footerDiv{
+    height: auto;
+    width: 100%;
+    display:inline-block;/**VERIFICA QUI*/
+    vertical-align: bottom;
+    overflow: auto;
+    padding-bottom: 50px;
+    border-top: solid;
+}
+.RDiv{
+    width: 40%;
+    height: auto;
+    float: left;
+    margin-right: auto;/*2%*/
+    margin-top: 20px;
+    text-align: right;
+    /*border:solid;
+    border-color: yellow;*/ 
+}
+.LDiv{
+    width: 40%;
+    height: auto;
+    float: left;
+    margin-left: 4%;/*4%*/
+    margin-bottom: 25px;
+    /*border:solid;
+    border-color: yellow;*/
+}
+.CDiv{
+    width: 10%;
+    height: auto;
+    float:left;
+    margin-top: 20px;
+    display:table-cell; vertical-align:middle; text-align:center;/*centrare l'immagine*/
+    /*padding: auto;*/
+    /*margin: 0 auto;*/
+    /*border:solid;
+    border-color: yellow;*/
+}
+.testo{
+    color: white;
+    text-decoration: none;
+}
+.link:hover{
+    color:grey;
+}
+a{
+   border:none;
+   text-decoration: none;
+}
+
 /*PROVA PROVA PROVA*/
 .footerDiv300{/*js*/
     /*margin-left: 10%;
@@ -44,58 +95,3 @@ footer{
     border-color: yellow;*/
 }
 /*FINE PROVA PROVA PROVA*/
-.footerDiv{
-    height: auto;
-    width: 100%;
-    display:inline-block;/**VERIFICA QUI*/
-    vertical-align: bottom;
-    overflow: auto;
-    padding-bottom: 50px;
-    border-top: solid;
-}
-.RDiv{
-    width: 40%;
-    height: auto;
-    float: left;
-    margin-right: auto;/*2%*/
-    margin-top: 20px;
-    text-align: right;
-    
-    /*border:solid;
-    border-color: yellow;*/ 
-}
-.LDiv{
-    width: 40%;
-    height: auto;
-    float: left;
-    margin-left: 4%;/*4%*/
-    margin-bottom: 25px;
-    
-    /*border:solid;
-    border-color: yellow;*/
-}
-.CDiv{
-    width: 10%;
-    height: auto;
-    float:left;
-    /*padding: auto;*/
-    /*margin: 0 auto;*/
-    margin-top: 20px;
-    
-    display:table-cell; vertical-align:middle; text-align:center;/*centrare l'immagine*/
-
-
-    /*border:solid;
-    border-color: yellow;*/
-}
-.testo{
-    color: white;
-    text-decoration: none;
-}
-.link:hover{
-    color:grey;
-}
-a{
-   border:none;
-   text-decoration: none;
-}

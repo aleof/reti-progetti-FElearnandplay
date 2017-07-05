@@ -1,12 +1,11 @@
 header{
+    border: none;
     border-bottom:solid; 
-    
-
-    /*border-bottom-style:none;*/
-    padding-left: 4%;
-    
     height:120px;
-    width: 98%;
+    width: 100%;
+    position:fixed;
+    top:0;/*default non è zero*/
+    background-color: white;
 }
 .headerForm{
     float:right;
@@ -14,6 +13,7 @@ header{
 #intestazione{
     margin-right: 6%;
     padding-top: 5px;
+    padding-left: 4%;
     border: none;
     overflow: auto;
 }
@@ -28,8 +28,8 @@ header{
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
+    outline: none;/*non fa vedere il contorno del bottone quando fai click*/
     /*cursor: pointer;*/
-    outline: none;
 }
 .headerButton1{
     color:#f44336;
