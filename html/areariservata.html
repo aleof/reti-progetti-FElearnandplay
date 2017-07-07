@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Area Riservata</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="../css/areariservata-style.css" rel="stylesheet">
+        
+        <script src="../js/areariservata.js"></script>
+        <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+
+        
+    </head>
+    <body onload="gestioneF5()"><!-- onload="function()" ogni volta che viene caricata la pagina effettua questo// onunload="gestioneX()"-->
+        <header >
+            <div>
+                <img src="../img/reti.png">
+                <img id="logout" class="logout" src="../img/logout.png" hidden onclick="esci()"><!--alert che chiede conferma di uscita-->
+            </div>
+        </header> 
+
+        <div id="navigationbar" hidden ><!--onclick-->
+                <ul>
+                    <li><button class="menuButton" onclick="paginainiziale()">paginainiziale</button></li>
+                    <li><button class="menuButton" onclick="listapresentazioni()">listaprenotazioni</button></li>
+                    <li><button class="menuButton" onclick="prenotazione()">prenotazione</button></li>
+                    <li><button class="menuButton" onclick="gestionemerce()">gestionemerce</button></li>
+                    <li><button class="menuButton" onclick="dettagliomerce()">dettagliomerce</button></li>
+                </ul>
+        </div>
+
+        <div id="login" class="login" name="visible">
+            <form name"loginform" method="POST">  <!--alert("ok"); -->
+                <p>Nome utente:</p>
+                <input id="user"/>
+            
+                <p>Password:</p>
+                <input id="password"/>
+                <br>
+                <br>
+                <button class="button" type="button" onclick="accesso()">Accedi</button> <!--type = "button" prevent refresh page-->
+                <!-- <script> alert("ok");</script>-->
+            </form>
+            <form>
+                <br>
+                <br>
+                <button class="button" type="button">Registrati</button>
+            </form>
+        </div>
+
+        <div id="paginainiziale" class="div" hidden><!-- filtra per diversi campi -->
+            <h2>Pagina Iniziale</h2>
+        </div>
+
+        <div id="prenotazione" class="div" hidden>
+            <h2>Prenotazione</h2>
+            <form>
+                <input id="a"/>
+            </form>
+            <form>
+                <input id="b"/>
+            </form>
+        </div>
+
+        <div id="listaprenotazioni" class="div" hidden><!-- filtra per diversi campi -->
+            <h2>Lista Prenotazioni</h2>
+        </div>
+
+        <div id="gestionemerce" class="div" hidden>
+            <h2>Gestione Merce</h2>
+        </div>
+
+        <div id="dettagliomerce" class="div" hidden>
+            <h2>Dettaglio Merce</h2>
+        </div>
+    </body>
+</html>

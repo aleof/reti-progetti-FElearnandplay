@@ -1,0 +1,75 @@
+header{
+    height: 10%;
+    
+    top:0;
+    
+    padding:5px;
+    border-bottom: solid;
+    border-color: darkgray;
+    border-width: 2px;
+    background-color: white;
+}
+#navigationbar{
+    border-bottom: ridge;
+    border-width: 2px;
+    margin: 0;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 0px;
+    background-color: aliceblue;
+}
+ul{
+     list-style-type: none;/*toglie la spunta*/
+     overflow: auto;/*imposrtante per contenre la lista*/
+     
+     margin: 0;
+     padding: 0;
+}
+li{
+    float: left;/*verifica*/
+    
+}
+li p{
+    display: block;
+}
+body{
+    margin:0;
+    background-color: aliceblue;
+}
+.div{
+    margin-top: 5%;
+    margin-right: 10%;
+    margin-left: 10%;
+
+    border:solid;
+}
+.login{/*limite 250% zoom*/
+    margin-top: 5%;
+    margin-right: 35%;
+    margin-left: 35%;
+    padding-bottom: 50px;
+
+    text-align:center;
+    /*display:table-cell; vertical-align:middle; */
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);/*ombra*/
+
+    border:solid;
+    border-width: 1px;
+    border-color: grey;
+    background-color: white;
+}
+.logout{
+    width:40px;
+    height: 20px;
+    float: right;
+}
+.button{
+    outline: none;
+}
+.menuButton{
+    outline: none;
+    border-color: cadetblue;
+    color:brown;
+    cursor:pointer;/*puntatore*/
+}
