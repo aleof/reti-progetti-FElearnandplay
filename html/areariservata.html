@@ -45,8 +45,49 @@
             <form>
                 <br>
                 <br>
-                <button class="button" type="button">Registrati</button>
+                <button class="button" type="button" onclick="signup()">Registrati</button>
             </form>
+        </div>
+
+        <div id="signup" class="login" hidden>
+            <h2>Registrazione</h2>
+            <form>
+                <br>
+                <input id="nome" placeholder="Nome"/>
+                <p id="nullnomeerr" class="errormessage" hidden>Campo obbligatorio</p>
+            </form>
+            <form>
+                <br>
+                <input id="cognome" placeholder="Cognome"/>
+                <p id="nullcognomeerr" class="errormessage" hidden>Campo obbligatorio</p>
+            </form>
+            <form>
+                <br>
+                <input id="email" placeholder="Email"/>
+                <p id="nullemailerr" class="errormessage" hidden>Campo obbligatorio</p>
+                <p id="emailerr" class="errormessage" hidden>
+                    Email già presente nel sistema!
+                </p>
+                <p id="formatemailerr" class="errormessage" hidden>
+                    Formato email errato. Immetti l'indirizzo e-mail nel formato prova@example.com.
+                </p>
+            </form>
+            <form>
+                <br>
+                <input id="newpassword" placeholder="password" type="password"/>
+                <p id="nullpassworderr" class="errormessage" hidden>Campo obbligatorio</p>
+                <p id="formatpassworderr" class="errormessage" hidden>
+                    Le password devono contenere almeno 8 caratteri e includere almeno due dei seguenti: 
+                    lettere maiuscole, lettere minuscole, numeri e simboli.
+                </p>
+            </form>
+            <form>
+                <br>
+                <input id="password2" placeholder="Conferma Password" type="password"/>
+                <p id="passworderr" class="errormessage" hidden>Le password non corrispondono</p>
+            </form>
+            <br>
+            <button class="button" type="button" onclick="signupconfirm()">Completa Registrazione</button>
         </div>
 
         <div id="paginainiziale" class="div" hidden><!-- filtra per diversi campi -->

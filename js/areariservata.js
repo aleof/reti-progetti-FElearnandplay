@@ -55,6 +55,142 @@ function accesso(){
     }
 }
 
+function signup(){
+    //dovresti fare tutta la logica di accesso su dei dati -- mock dei dati??
+    //flag utente attivo a 1
+
+    //se l'accesso  va a buon fine devi fare questo
+    //$("#navigationbar").show(); //jquery
+    try{
+        document.getElementById("login").setAttribute("hidden", "true");
+        document.getElementById("login").setAttribute("name", "hidden");
+
+        document.getElementById("signup").removeAttribute("hidden");
+    }
+    catch(Exception){
+        alert("errore");
+    }
+}
+
+function signupconfirm(){
+    var email_reg_expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
+    var password_reg_expr = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/;
+    var signup = true;
+
+    try{
+        var nome = document.getElementById("nome").value;
+        var cognome = document.getElementById("cognome").value;
+        var email= document.getElementById("email").value;
+        var password = document.getElementById("newpassword").value;
+        var password2 = document.getElementById("password2").value;
+
+        //  campi obbligatori == null
+        if(nome==""){
+            document.getElementById("nullnomeerr").removeAttribute("hidden");
+            signup = false;
+        }
+        else
+            document.getElementById("nullnomeerr").setAttribute("hidden", "true");
+
+        if(cognome==""){
+            document.getElementById("nullcognomeerr").removeAttribute("hidden");
+            signup = false;
+        }
+        else 
+            document.getElementById("nullcognomeerr").setAttribute("hidden", "true");
+
+        // verifica email emailerr
+        if(email==""){
+            document.getElementById("nullemailerr").removeAttribute("hidden");
+            document.getElementById("formatemailerr").setAttribute("hidden", "true");
+            document.getElementById("emailerr").setAttribute("hidden", "true");
+            signup = false;
+        }
+        /*else if(email=xml){
+            document.getElementById("emailerr").removeAttribute("hidden");
+            document.getElementById("formatemailerr").setAttribute("hidden", "true");
+            document.getElementById("nullemailerr").setAttribute("hidden", "true");
+        }*/
+        else if(!email_reg_expr.test(email)){
+            document.getElementById("formatemailerr").removeAttribute("hidden");
+            document.getElementById("nullemailerr").setAttribute("hidden", "true");
+            document.getElementById("emailerr").setAttribute("hidden", "true");
+            signup = false;
+        } 
+        else{
+            document.getElementById("nullemailerr").setAttribute("hidden", "true");
+            document.getElementById("formatemailerr").setAttribute("hidden", "true");
+            document.getElementById("emailerr").setAttribute("hidden", "true");
+        }
+
+        // verifica password
+        if(password==("")){
+            document.getElementById("nullpassworderr").removeAttribute("hidden");
+            document.getElementById("passworderr").setAttribute("hidden", "true");
+            document.getElementById("formatpassworderr").setAttribute("hidden", "true");
+            signup = false;
+        }
+        else if(!password_reg_expr.test(password)){
+            document.getElementById("formatpassworderr").removeAttribute("hidden");
+            document.getElementById("nullpassworderr").setAttribute("hidden", "true");
+            document.getElementById("passworderr").setAttribute("hidden", "true");
+            signup = false;
+        }
+        else if(password!=password2){
+            document.getElementById("passworderr").removeAttribute("hidden");
+            document.getElementById("nullpassworderr").setAttribute("hidden", "true");
+            document.getElementById("formatpassworderr").setAttribute("hidden", "true");
+            signup = false;
+        }
+        else{ 
+            document.getElementById("nullpassworderr").setAttribute("hidden", "true");
+            document.getElementById("passworderr").setAttribute("hidden", "true");
+            document.getElementById("formatpassworderr").setAttribute("hidden", "true");
+            }
+
+        if(signup){
+            aggiungiUtenteJSON(nome, cognome, email, password);
+            //aggiungiUtenteJSON(nome, cognome, email, password);
+            document.getElementById("signup").setAttribute("hidden", "true");
+            document.getElementById("login").setAttribute("name", "hidden");///controlla questo hidden
+            document.getElementById("login").removeAttribute("hidden");
+        }
+    }
+    catch(Exception){
+        alert("errore");
+    }
+}
+
+//non va
+/*function aggiungiUtenteXML(nome, cognome, email, password){
+    //if exist / not exist / 2 casi diversi
+    var XML = new XMLWriter("../xml/utenti.xml");
+
+    XML.BeginNode("utenti");
+    XML.BeginNode("utente");
+    XML.Node("nome", nome);
+    XML.Node("cognome", cognome);
+    XML.Node("email", email);
+    XML.node("password", password);
+    XML.EndNode();
+    XML.EndNode();
+}*/
+function aggiungiUtenteJSON(nome, cognome, email, password){
+    if(false){
+
+    }
+    else{
+        saveText("../json/", Utenti.json)
+    }
+}
+function saveText(text, filename){
+  var a = document.createElement('a');
+  a.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(text));
+  //a.setAttribute('download', filename);
+  a.click()
+}/****/
+//__________________________________________________________________________________________________________________________________
+
 function esci(){//nomi function non possono essere uguali all'id dell'elemento
     //chiedi conferma che vuole uscire
     if(confirm("Stai per effettuare il logout. Confermi di voler uscire?")){

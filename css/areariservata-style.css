@@ -73,3 +73,6 @@ body{
     color:brown;
     cursor:pointer;/*puntatore*/
 }
+.errormessage{
+    color:red;
+}

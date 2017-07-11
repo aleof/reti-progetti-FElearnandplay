@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<utenti>
+    <utente>
+        <nome>Gennaro</nome>
+        <cognome>Esposito</cognome>
+        <email>081-0000000</email>
+        <password>Napoli</password>
+		<attivo>01</attivo>
+    </utente>
+    <utente>
+        <nome>Paolo</nome>
+        <cognome>Rossi</cognome>
+        <email>02-00000000</email>
+        <password>Milano</password>
+		<attivo>01</attivo>
+    </utente>
+</utenti>
