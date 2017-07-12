@@ -1,6 +1,10 @@
 /*function gestioneX(){
     alert("chiusura browser");
 }*/
+function init(){
+    gestioneLocalStorage();
+    gestioneF5();
+}
 
 function gestioneF5(){
     //if(controlla flag su xml esterno-se è = 1 esegui il blocco sotto altrimenti - non fare niente){
@@ -72,7 +76,8 @@ function signup(){
     }
 }
 
-function signupconfirm(){
+var utentiA = [];
+function signupconfirm(data){
     var email_reg_expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
     var password_reg_expr = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/;
     var signup = true;
@@ -149,8 +154,16 @@ function signupconfirm(){
             }
 
         if(signup){
-            aggiungiUtenteJSON(nome, cognome, email, password);
+            var utente={nome:nome,cognome:cognome,email:email,password:password};
+            
+            utentiA.push(utente);
+
+            localStorage.utenti = JSON.stringify(utentiA);
+            //utenti = (JSON.parse(localStorage.utenti));
+
             //aggiungiUtenteJSON(nome, cognome, email, password);
+            
+
             document.getElementById("signup").setAttribute("hidden", "true");
             document.getElementById("login").setAttribute("name", "hidden");///controlla questo hidden
             document.getElementById("login").removeAttribute("hidden");
@@ -161,35 +174,20 @@ function signupconfirm(){
     }
 }
 
-//non va
-/*function aggiungiUtenteXML(nome, cognome, email, password){
-    //if exist / not exist / 2 casi diversi
-    var XML = new XMLWriter("../xml/utenti.xml");
-
-    XML.BeginNode("utenti");
-    XML.BeginNode("utente");
-    XML.Node("nome", nome);
-    XML.Node("cognome", cognome);
-    XML.Node("email", email);
-    XML.node("password", password);
-    XML.EndNode();
-    XML.EndNode();
-}*/
-function aggiungiUtenteJSON(nome, cognome, email, password){
-    if(false){
-
-    }
-    else{
-        saveText("../json/", Utenti.json)
+function gestioneLocalStorage(){
+    if(localStorage.utenti){
+        utentiA = JSON.parse(localStorage.utenti);
+        /*for(var i=0; i<utentiA.length-1;i++){
+            var nome = utentiA[i].nome;
+            var cognome = utentiA[i].cognome;
+            var email = utentiA[i].email;
+            var password = utentiA[i].password;
+            var u = {nome:nome,cognome:cognome,email:email,password:password}
+            utentiA.push(u);
+            localStorage.utenti = JSON.stringify(utentiA);
+        }*/
     }
 }
-function saveText(text, filename){
-  var a = document.createElement('a');
-  a.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(text));
-  //a.setAttribute('download', filename);
-  a.click()
-}/****/
-//__________________________________________________________________________________________________________________________________
 
 function esci(){//nomi function non possono essere uguali all'id dell'elemento
     //chiedi conferma che vuole uscire
