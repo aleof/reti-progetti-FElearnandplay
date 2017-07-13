@@ -31,18 +31,20 @@
 
         <div id="login" class="login" name="visible">
             <form name"loginform" method="POST">  <!--alert("ok"); -->
-                <p>Nome utente:</p>
-                <input id="user"/>
-            
-                <p>Password:</p>
-                <input id="password"/>
+                <p>Effettua l'accesso</p>
+               
+                <input id="user" placeholder="Email"/>
+                <p id="emailerrore" class="errormessage" hidden>Email errata o non esistente (Campo Obbligatorio)</p>
+                <br>
+                <br>
+                <input id="password" placeholder="Password" type="password"/>
+                <p id="passworderrore" class="errormessage" hidden>Password errata</p>
                 <br>
                 <br>
                 <button class="button" type="button" onclick="accesso()">Accedi</button> <!--type = "button" prevent refresh page-->
                 <!-- <script> alert("ok");</script>-->
             </form>
             <form>
-                <br>
                 <br>
                 <button class="button" type="button" onclick="signup()">Registrati</button>
             </form>

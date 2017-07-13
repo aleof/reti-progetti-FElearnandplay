@@ -1,62 +1,118 @@
 /*function gestioneX(){
     alert("chiusura browser");
 }*/
+var utentiA = [];
+
+//utentiA.push(u);
+//localStorage.setItem("utenti", u);
+
 function init(){
-    gestioneLocalStorage();
     gestioneF5();
+    gestioneStorage();
 }
 
 function gestioneF5(){
     //if(controlla flag su xml esterno-se è = 1 esegui il blocco sotto altrimenti - non fare niente){
-    if(isActive()){
-        if(document.getElementById("login").getAttribute("name")=="visible"){
-            if(confirm("Effettuando il refresh della pagina verrà eseguito automaticamente il logout. Confermi di voler uscire?")){
-            //window.location.href="areariservata.html";
-            //cambia flag e gestisci il logout
-            }
-            else{
-                //mantieni il flag utnete attivo
-                //lascia l'utente sulla pagina iniziale
-                document.getElementById("login").setAttribute("hidden", "true");
-                document.getElementById("login").setAttribute("name", "hidden");
-                document.getElementById("navigationbar").removeAttribute("hidden");
-                document.getElementById("logout").removeAttribute("hidden");
-                document.getElementById("logout").setAttribute("name", "sp");
-                document.getElementById("paginainiziale").removeAttribute("hidden");
-            }
-        } 
+    if(sessionStorage.getItem("Active")!=null){
+        if(isActive()){
+            if(document.getElementById("login").getAttribute("name")=="visible"){
+                if(confirm("Effettuando il refresh della pagina verrà eseguito automaticamente il logout. Confermi di voler uscire?")){
+                //window.location.href="areariservata.html";
+                //cambia flag e gestisci il logout
+                sessionStorage.setItem("Active", "0");
+                }
+                else{
+                    //mantieni il flag utnete attivo
+                    //lascia l'utente sulla pagina iniziale
+                    document.getElementById("login").setAttribute("hidden", "true");
+                    document.getElementById("login").setAttribute("name", "hidden");
+                    document.getElementById("navigationbar").removeAttribute("hidden");
+                    document.getElementById("logout").removeAttribute("hidden");
+                    document.getElementById("logout").setAttribute("name", "sp");
+                    document.getElementById("paginainiziale").removeAttribute("hidden");
+                }
+            } 
+        }
     }
 }
 
+function gestioneStorage(){
+    
+    if(!localStorage.utenti){
+        var utente = {nome:"default",cognome:"default",email:"default",password:"default"};    
+        utentiA.push(utente);
+        localStorage.utenti = JSON.stringify(utentiA);
+    }
+    if(sessionStorage.getItem("Active")==null){
+        sessionStorage.setItem("Active", "0");
+    }
+
+    /*if(localStorage.utenti){
+        
+            
+        utentiA.push(utente);
+
+        //localStorage.utenti = JSON.stringify(utentiA);
+        
+        utentiA = JSON.parse(localStorage.utenti);
+        for(var i=0; i<utentiA.length;i++){
+            var nome = utentiA[i].nome;
+            var cognome = utentiA[i].cognome;
+            var email = utentiA[i].email;
+            var password = utentiA[i].password;
+            var u = {nome:nome,cognome:cognome,email:email,password:password}
+            utentiA.push(u);
+            localStorage.utenti = JSON.stringify(utentiA);
+        }
+    }*/
+
+}
+
 function isActive(){
-    //leggi xml e verifica se c'è qualcuno attivo
     var isActive = true;
-    //ciclo for nel xml in cui ci sono i dati degli utenti. valorizzo la var isActive
-    //for(i=0; i<=length; i++){
-    // prendo elemento
-    // if(var = 1 (l'utente è attivo))
-    //    isActive=true;
-    //}
+    if(sessionStorage.getItem("Active")==0)
+        isActive=false;
     return isActive;
 }
 
 function accesso(){
     //dovresti fare tutta la logica di accesso su dei dati -- mock dei dati??
     //flag utente attivo a 1
+    utentiA = JSON.parse(localStorage.getItem("utenti"));
+    
+    for(var i = 0; i<utentiA.length; i++){
+        if(utentiA[i].email==document.getElementById("user").value){
+            
+            if(utentiA[i].password==document.getElementById("password").value){
+                sessionStorage.setItem("Active", "1");
+                try{
+                    document.getElementById("login").setAttribute("hidden", "true");
+                    document.getElementById("login").setAttribute("name", "hidden");
 
+                    document.getElementById("navigationbar").removeAttribute("hidden");
+                    document.getElementById("logout").removeAttribute("hidden");
+                    document.getElementById("paginainiziale").removeAttribute("hidden");
+                    break;    
+                }
+                catch(Exception){
+                    alert("errore");
+                }
+            }
+            else{
+                //password errata
+                document.getElementById("passworderrore").removeAttribute("hidden");
+                document.getElementById("emailerrore").setAttribute("hidden", "true");
+            }
+        }
+        else {
+            //email non esistente
+            document.getElementById("emailerrore").removeAttribute("hidden");
+            document.getElementById("passworderrore").setAttribute("hidden", "true");
+        }
+    }
     //se l'accesso  va a buon fine devi fare questo
     //$("#navigationbar").show(); //jquery
-    try{
-        document.getElementById("login").setAttribute("hidden", "true");
-        document.getElementById("login").setAttribute("name", "hidden");
-
-        document.getElementById("navigationbar").removeAttribute("hidden");
-        document.getElementById("logout").removeAttribute("hidden");
-        document.getElementById("paginainiziale").removeAttribute("hidden");
-    }
-    catch(Exception){
-        alert("errore");
-    }
+    
 }
 
 function signup(){
@@ -76,7 +132,6 @@ function signup(){
     }
 }
 
-var utentiA = [];
 function signupconfirm(data){
     var email_reg_expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
     var password_reg_expr = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/;
@@ -105,23 +160,29 @@ function signupconfirm(data){
             document.getElementById("nullcognomeerr").setAttribute("hidden", "true");
 
         // verifica email emailerr
+        /*utentiA = JSON.parse(localStorage.getItem("utenti"));*/
         if(email==""){
             document.getElementById("nullemailerr").removeAttribute("hidden");
             document.getElementById("formatemailerr").setAttribute("hidden", "true");
             document.getElementById("emailerr").setAttribute("hidden", "true");
             signup = false;
         }
-        /*else if(email=xml){
-            document.getElementById("emailerr").removeAttribute("hidden");
-            document.getElementById("formatemailerr").setAttribute("hidden", "true");
-            document.getElementById("nullemailerr").setAttribute("hidden", "true");
-        }*/
         else if(!email_reg_expr.test(email)){
             document.getElementById("formatemailerr").removeAttribute("hidden");
             document.getElementById("nullemailerr").setAttribute("hidden", "true");
             document.getElementById("emailerr").setAttribute("hidden", "true");
             signup = false;
         } 
+       /* else if(localStorage.getItem("utenti")){
+            for(var i = 0; i<utentiA.length; i++){
+                if(utentiA[i].email==document.getElementById("email").value){
+                    document.getElementById("emailerr").removeAttribute("hidden");
+                    document.getElementById("formatemailerr").setAttribute("hidden", "true");
+                    document.getElementById("nullemailerr").setAttribute("hidden", "true");
+                    signup = false;
+                }
+            }
+        }*/
         else{
             document.getElementById("nullemailerr").setAttribute("hidden", "true");
             document.getElementById("formatemailerr").setAttribute("hidden", "true");
@@ -174,25 +235,11 @@ function signupconfirm(data){
     }
 }
 
-function gestioneLocalStorage(){
-    if(localStorage.utenti){
-        utentiA = JSON.parse(localStorage.utenti);
-        /*for(var i=0; i<utentiA.length-1;i++){
-            var nome = utentiA[i].nome;
-            var cognome = utentiA[i].cognome;
-            var email = utentiA[i].email;
-            var password = utentiA[i].password;
-            var u = {nome:nome,cognome:cognome,email:email,password:password}
-            utentiA.push(u);
-            localStorage.utenti = JSON.stringify(utentiA);
-        }*/
-    }
-}
-
 function esci(){//nomi function non possono essere uguali all'id dell'elemento
     //chiedi conferma che vuole uscire
     if(confirm("Stai per effettuare il logout. Confermi di voler uscire?")){
         //flag utnete attivo a zero !!!
+        sessionStorage.setItem("Active", "0");
         window.location.href="areariservata.html"
     }
     else{

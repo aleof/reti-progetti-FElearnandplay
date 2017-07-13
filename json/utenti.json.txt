@@ -1,0 +1,13 @@
+[{
+	"nome": "default",
+	"cognome": "default",
+	"email": "default",
+	"password": "default",
+	"active": 0
+}, {
+	"nome": "Alessandro",
+	"cognome": "Leo Folliero",
+	"email": "aleof@gmail.com",
+	"password": "Alessandro93?",
+	"active": 0
+}]
