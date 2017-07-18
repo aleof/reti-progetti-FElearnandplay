@@ -97,16 +97,72 @@
 
         <div id="prenotazione" class="div" hidden>
             <h2>Prenotazione</h2>
-            <form>
-                <input id="a"/>
-            </form>
-            <form>
-                <input id="b"/>
-            </form>
+            <p id="prenotazioneeffettuata" class="successmessage" hidden >Complimenti prenotazione effettuata con successo!</p><br>
+            Descrizione Ordine: <input id="descrizioneOrdine"/><br>
+            <p id="nulldescrerr" class="errormessage" hidden >Campo obbligatorio</p><br>
+            Tipologia: <select id="tipologia">
+                <option></option>
+                <option>Elettronica</option>
+                <option>Sport</option>
+                <option>Libri</option>
+                <option>Cibo</option>
+                <option>Fai da te</option>
+                <option>Abbigliamento</option>
+            </select><br>
+            <p id="nulltipologiaerr" class="errormessage" hidden>Campo obbligatorio</p><br>
+            Quantità: <input id="quantita" type="number"><br>
+            <p id="nullquantitaerr" class="errormessage" hidden>Campo obbligatorio</p><br>
+            Data: <input id="data" type="date"><br>
+            <p id="nulldataerr" class="errormessage" hidden>Campo obbligatorio</p><br>
+            Ora: <input id="ora" type="time"/><br>
+            <p id="nulloraerr" class="errormessage" hidden>Campo obbligatorio</p><br>
+
+            <br>
+            <button class="button" type="button" onclick="prenota()">Completa Prenotazione</button>
         </div>
 
         <div id="listaprenotazioni" class="div" hidden><!-- filtra per diversi campi -->
             <h2>Lista Prenotazioni</h2>
+            <p id="listautente">a</p>
+            <p id="quantitalista">b</p>
+            
+            <label for="filtroTabella">Cerca nella tabella:</label>
+            <input type="text" id="filtroTabella" name="filtroTabella" placeholder="Ricerca nella tabella..." onkeyup="searchOnTable()"/>
+            <br>
+            <br>
+
+            <!-- Ricerca Avanzata-->
+            <button id="advanceSearchBut" onclick="viewAdvanceSearch()">Ricerca Avanzata</button>
+            
+            <div id="advanceSearchDiv" class="searchDiv" hidden>
+                <label for="filtroTabella">Filtra per quantità:</label>
+                <input type="text" id="filtroQuantita" name="filtroQuantita" placeholder="Inserisci un intero"> <!--onkeyup="searchOnColumn(1, 'filtroQuantita')"/>-->
+                <label for="filtroTabella">&nbsp Filtra per tipologia:</label>
+                <select type="text" id="filtroTipologia" name="filtroTipologia"><!-- onchange="searchOnColumn(2, 'filtroTipologia')">-->
+                    <!--<option id="a" name="filtroTabella" onkeyup="">a</option>-->
+                    <option value="">all</option>
+                    <option value="Elettronica">Elettronica</option>
+                    <option value="Sport">Sport</option>
+                    <option value="Libri">Libri</option>
+                    <option value="Cibo">Cibo</option>
+                    <option value="Fai da te">Fai da te</option>
+                    <option value="Abbigliamento">Abbigliamento</option>
+                </select>
+                <button onclick="advanceSearch()">&nbsp Ricerca</button>
+                <br>
+                <br>
+                <button onclick="hiddenAdvanceSearch()">&nbsp Nascondi ricerca avanzata</button>
+                <br>
+                <br>
+            </div>
+
+            <div id="divtable" class="divtable">
+                <table id="table">
+                    <!--<tr><td>Descrizione</td><td>Quantità</td><td>Tipologia</td><td>Data</td><td>ora</td></tr>-->
+                    <!--<tr><td>Dato 1,1</td><td>Dato 1,2</td><td>Dato 1,3</td><td>Dato 1,4</td><td>Dato 1,5</td></tr>
+                    <tr><td>Dato 2,1</td><td>Dato 2,2</td><td>Dato 2,3</td><td>Dato 2,4</td><td>Dato 2,5</td></tr>-->
+                </table>
+            </div>
         </div>
 
         <div id="gestionemerce" class="div" hidden>

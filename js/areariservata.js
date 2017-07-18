@@ -1,10 +1,11 @@
-/*function gestioneX(){
-    alert("chiusura browser");
-}*/
 var utentiA = [];
+var merciA = [];
 
-//utentiA.push(u);
-//localStorage.setItem("utenti", u);
+/**
+ * 
+ * onLoad html
+ * 
+ */
 
 function init(){
     gestioneF5();
@@ -17,9 +18,9 @@ function gestioneF5(){
         if(isActive()){
             if(document.getElementById("login").getAttribute("name")=="visible"){
                 if(confirm("Effettuando il refresh della pagina verrà eseguito automaticamente il logout. Confermi di voler uscire?")){
-                //window.location.href="areariservata.html";
                 //cambia flag e gestisci il logout
                 sessionStorage.setItem("Active", "0");
+                sessionStorage.setItem("User", "");
                 }
                 else{
                     //mantieni il flag utnete attivo
@@ -28,7 +29,7 @@ function gestioneF5(){
                     document.getElementById("login").setAttribute("name", "hidden");
                     document.getElementById("navigationbar").removeAttribute("hidden");
                     document.getElementById("logout").removeAttribute("hidden");
-                    document.getElementById("logout").setAttribute("name", "sp");
+                    //document.getElementById("logout").setAttribute("name", "sp");
                     document.getElementById("paginainiziale").removeAttribute("hidden");
                 }
             } 
@@ -43,29 +44,16 @@ function gestioneStorage(){
         utentiA.push(utente);
         localStorage.utenti = JSON.stringify(utentiA);
     }
+    if(!localStorage.merci){
+        var merce = {utente:"default", descrizioneOrdine:"default", tipologia:"default",
+                     quantita:"default", data:"default", ora:"default"};    
+        merciA.push(merce);
+        localStorage.merci = JSON.stringify(merciA);
+    }
     if(sessionStorage.getItem("Active")==null){
         sessionStorage.setItem("Active", "0");
+        sessionStorage.setItem("User", "");
     }
-
-    /*if(localStorage.utenti){
-        
-            
-        utentiA.push(utente);
-
-        //localStorage.utenti = JSON.stringify(utentiA);
-        
-        utentiA = JSON.parse(localStorage.utenti);
-        for(var i=0; i<utentiA.length;i++){
-            var nome = utentiA[i].nome;
-            var cognome = utentiA[i].cognome;
-            var email = utentiA[i].email;
-            var password = utentiA[i].password;
-            var u = {nome:nome,cognome:cognome,email:email,password:password}
-            utentiA.push(u);
-            localStorage.utenti = JSON.stringify(utentiA);
-        }
-    }*/
-
 }
 
 function isActive(){
@@ -75,8 +63,13 @@ function isActive(){
     return isActive;
 }
 
+/**
+ * 
+ * Login
+ * 
+ */
+
 function accesso(){
-    //dovresti fare tutta la logica di accesso su dei dati -- mock dei dati??
     //flag utente attivo a 1
     utentiA = JSON.parse(localStorage.getItem("utenti"));
     
@@ -85,6 +78,7 @@ function accesso(){
             
             if(utentiA[i].password==document.getElementById("password").value){
                 sessionStorage.setItem("Active", "1");
+                sessionStorage.setItem("User", document.getElementById("user").value);
                 try{
                     document.getElementById("login").setAttribute("hidden", "true");
                     document.getElementById("login").setAttribute("name", "hidden");
@@ -102,6 +96,7 @@ function accesso(){
                 //password errata
                 document.getElementById("passworderrore").removeAttribute("hidden");
                 document.getElementById("emailerrore").setAttribute("hidden", "true");
+                break;
             }
         }
         else {
@@ -110,17 +105,16 @@ function accesso(){
             document.getElementById("passworderrore").setAttribute("hidden", "true");
         }
     }
-    //se l'accesso  va a buon fine devi fare questo
-    //$("#navigationbar").show(); //jquery
-    
 }
 
-function signup(){
-    //dovresti fare tutta la logica di accesso su dei dati -- mock dei dati??
-    //flag utente attivo a 1
+/**
+ * 
+ * Signup
+ * 
+ */
 
-    //se l'accesso  va a buon fine devi fare questo
-    //$("#navigationbar").show(); //jquery
+function signup(){
+    //flag utente attivo a 1
     try{
         document.getElementById("login").setAttribute("hidden", "true");
         document.getElementById("login").setAttribute("name", "hidden");
@@ -160,7 +154,7 @@ function signupconfirm(data){
             document.getElementById("nullcognomeerr").setAttribute("hidden", "true");
 
         // verifica email emailerr
-        /*utentiA = JSON.parse(localStorage.getItem("utenti"));*/
+        utentiA = JSON.parse(localStorage.getItem("utenti"));
         if(email==""){
             document.getElementById("nullemailerr").removeAttribute("hidden");
             document.getElementById("formatemailerr").setAttribute("hidden", "true");
@@ -173,7 +167,7 @@ function signupconfirm(data){
             document.getElementById("emailerr").setAttribute("hidden", "true");
             signup = false;
         } 
-       /* else if(localStorage.getItem("utenti")){
+       else if(localStorage.getItem("utenti")){
             for(var i = 0; i<utentiA.length; i++){
                 if(utentiA[i].email==document.getElementById("email").value){
                     document.getElementById("emailerr").removeAttribute("hidden");
@@ -182,7 +176,7 @@ function signupconfirm(data){
                     signup = false;
                 }
             }
-        }*/
+        }
         else{
             document.getElementById("nullemailerr").setAttribute("hidden", "true");
             document.getElementById("formatemailerr").setAttribute("hidden", "true");
@@ -216,17 +210,11 @@ function signupconfirm(data){
 
         if(signup){
             var utente={nome:nome,cognome:cognome,email:email,password:password};
-            
             utentiA.push(utente);
-
             localStorage.utenti = JSON.stringify(utentiA);
-            //utenti = (JSON.parse(localStorage.utenti));
-
-            //aggiungiUtenteJSON(nome, cognome, email, password);
-            
 
             document.getElementById("signup").setAttribute("hidden", "true");
-            document.getElementById("login").setAttribute("name", "hidden");///controlla questo hidden
+            document.getElementById("login").setAttribute("name", "hidden");
             document.getElementById("login").removeAttribute("hidden");
         }
     }
@@ -235,11 +223,18 @@ function signupconfirm(data){
     }
 }
 
+/**
+ * 
+ * Logout
+ * 
+ */
+
 function esci(){//nomi function non possono essere uguali all'id dell'elemento
     //chiedi conferma che vuole uscire
     if(confirm("Stai per effettuare il logout. Confermi di voler uscire?")){
         //flag utnete attivo a zero !!!
         sessionStorage.setItem("Active", "0");
+        sessionStorage.setItem("User", "0");
         window.location.href="areariservata.html"
     }
     else{
@@ -247,12 +242,84 @@ function esci(){//nomi function non possono essere uguali all'id dell'elemento
     }
 }
 
+/**
+ * 
+ * Prenotazione
+ * 
+ */
+
+function prenota(){
+    //aggiungi valori nel campo merci
+    merciA = JSON.parse(localStorage.getItem("merci"));
+
+    try{
+        var descr = document.getElementById("descrizioneOrdine").value;
+        var tipologia = document.getElementById("tipologia").value;
+        var quantita= document.getElementById("quantita").value;
+        var data = document.getElementById("data").value;
+        var ora = document.getElementById("ora").value;
+        var prenota = true;
+
+        if(descr==""){
+            document.getElementById("nulldescrerr").removeAttribute("hidden");
+            document.getElementById("prenotazioneeffettuata").setAttribute("hidden");
+            prenota=false;
+        }
+        if(tipologia==""){
+            document.getElementById("nulltipologiaerr").removeAttribute("hidden");
+            document.getElementById("prenotazioneeffettuata").setAttribute("hidden");
+            prenota=false;
+        }
+        if(quantita=="" || quantita==0){
+            document.getElementById("nullquantitaerr").removeAttribute("hidden");
+            document.getElementById("prenotazioneeffettuata").setAttribute("hidden");
+            prenota=false;
+        }
+        if(data==""){
+            document.getElementById("nulldataerr").removeAttribute("hidden");
+            document.getElementById("prenotazioneeffettuata").setAttribute("hidden");
+            prenota=false;
+        }//limitazione ai giorni
+        if(ora==""){
+            document.getElementById("nulloraerr").removeAttribute("hidden");
+            document.getElementById("prenotazioneeffettuata").setAttribute("hidden");
+            prenota=false;
+        }//orario indicato  
+
+        if(prenota){
+            var merce = {utente:sessionStorage.getItem("User"), descrizioneOrdine:descr, tipologia:tipologia,
+                     quantita:quantita, data:data, ora:ora};    
+            merciA.push(merce);
+            localStorage.merci = JSON.stringify(merciA);  
+
+            document.getElementById("prenotazioneeffettuata").removeAttribute("hidden"); 
+            document.getElementById("descrizioneOrdine").value=null;
+            document.getElementById("tipologia").value=null;
+            document.getElementById("quantita").value=null;
+            document.getElementById("data").value=null;
+            document.getElementById("ora").value=null;
+        }
+    }
+    catch(Exception){
+        alert("error");
+    }
+}
+
+/**
+ * 
+ * Gesione delle varie pagine
+ * 
+ */
+
 function paginainiziale(){
     try{
         document.getElementById("listaprenotazioni").setAttribute("hidden", "true");
         document.getElementById("prenotazione").setAttribute("hidden", "true");
         document.getElementById("gestionemerce").setAttribute("hidden", "true");
         document.getElementById("dettagliomerce").setAttribute("hidden", "true");
+
+        document.getElementById("table").remove();
+        document.getElementById("divtable").appendChild(document.createElement("table")).setAttribute("id", "table");
 
         document.getElementById("paginainiziale").removeAttribute("hidden");
     }
@@ -268,7 +335,43 @@ function listapresentazioni(){
         document.getElementById("gestionemerce").setAttribute("hidden", "true");
         document.getElementById("dettagliomerce").setAttribute("hidden", "true");
 
+        document.getElementById("table").remove();
+        document.getElementById("divtable").appendChild(document.createElement("table")).setAttribute("id", "table");
+
         document.getElementById("listaprenotazioni").removeAttribute("hidden");
+        document.getElementById("listautente").innerHTML="Prenotazioni effettuate dall'utente: "+sessionStorage.getItem("User");
+
+        var count = 0;
+        var array;
+        var table = document.getElementById("table")
+        //var divtable = document.getElementById("divtable")
+        //var table = documen.createElement("table");
+
+        var tr = document.createElement("tr");
+        //tr.style.cssText="";
+        divtable.appendChild
+        table.appendChild(tr);
+        rows("Descrizione", tr);
+        rows("Quantita" , tr); //parseInt(array[i].quantita,10);
+        rows("Tipologia", tr);
+        rows("Data", tr);
+        rows("Ora", tr);
+
+        array = JSON.parse(localStorage.getItem("merci"));
+        for(var i=0; i<array.length; i++){
+            if(array[i].utente==sessionStorage.getItem("User")){
+                var tr = document.createElement("tr");
+                //tr.style.cssText="";
+                table.appendChild(tr);
+                rows(array[i].descrizioneOrdine, tr);
+                rows(array[i].quantita, tr); //parseInt(array[i].quantita,10);
+                rows(array[i].tipologia, tr);
+                rows(array[i].data, tr);
+                rows(array[i].ora, tr);
+                count++;
+            }
+        }
+        document.getElementById("quantitalista").innerHTML="Quantita prenotazioni: "+count;
     }
     catch(Exception){
         alert("error");
@@ -282,7 +385,11 @@ function prenotazione(){
         document.getElementById("gestionemerce").setAttribute("hidden", "true");
         document.getElementById("dettagliomerce").setAttribute("hidden", "true");
 
-        document.getElementById("prenotazione").removeAttribute("hidden");    
+        document.getElementById("table").remove();
+        document.getElementById("divtable").appendChild(document.createElement("table")).setAttribute("id", "table");
+
+        document.getElementById("prenotazioneeffettuata").setAttribute("hidden","true");
+        document.getElementById("prenotazione").removeAttribute("hidden");   
     }
         catch(Exception){
             alert("error");
@@ -295,6 +402,9 @@ function gestionemerce(){
         document.getElementById("listaprenotazioni").setAttribute("hidden", "true");
         document.getElementById("prenotazione").setAttribute("hidden", "true");
         document.getElementById("dettagliomerce").setAttribute("hidden", "true");
+
+        document.getElementById("table").remove();
+        document.getElementById("divtable").appendChild(document.createElement("table")).setAttribute("id", "table");
 
         document.getElementById("gestionemerce").removeAttribute("hidden");  
     }
@@ -310,9 +420,120 @@ function dettagliomerce(){
         document.getElementById("prenotazione").setAttribute("hidden", "true");
         document.getElementById("gestionemerce").setAttribute("hidden", "true");
 
+        document.getElementById("table").remove();
+        document.getElementById("divtable").appendChild(document.createElement("table")).setAttribute("id", "table");
+
         document.getElementById("dettagliomerce").removeAttribute("hidden"); 
     }
     catch(Exception){
         alert("error");
     }
+}
+
+/**
+ * 
+ * Filtri
+ * 
+ */
+
+function searchOnTable() {
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("filtroTabella");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 1; i < tr.length; i++) {
+    for(var l = 0; l < 5; l++){
+        td = tr[i].getElementsByTagName("td")[l];
+        if (td) {   
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                break;
+            } else {
+                tr[i].style.display = "none";
+            }
+        } 
+    }
+  }
+}
+
+function searchOnColumn(ncolonna, tipocolonna) {
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById(tipocolonna);
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 1; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[ncolonna];
+    if (td) {   
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+    } 
+  }
+}
+function advanceSearch() {
+  // Declare variables 
+  var input1, input2, filter1, filter2, table, tr, td, i;
+  input1 = document.getElementById("filtroQuantita");
+  input2 = document.getElementById("filtroTipologia");
+  filter1 = input1.value;
+  filter2 = input2.value.toUpperCase();
+  table = document.getElementById("table");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 1; i < tr.length; i++) {
+      //for(var l = 0; l < 5; l++){
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td.innerHTML == (filter1)) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if(td.innerHTML.toUpperCase() == (filter2) || filter2=="") {
+                tr[i].style.display = "";
+            }
+            else {
+                tr[i].style.display = "none";
+            }   
+        }
+        else {
+            tr[i].style.display = "none";
+        } 
+      }
+  }
+
+function viewAdvanceSearch(){
+    document.getElementById("advanceSearchDiv").removeAttribute("hidden"); 
+    document.getElementById("advanceSearchBut").setAttribute("hidden", "true");
+}
+
+function hiddenAdvanceSearch(){
+    document.getElementById("advanceSearchBut").removeAttribute("hidden"); 
+    document.getElementById("advanceSearchDiv").setAttribute("hidden", "true");
+}
+
+/**
+ * 
+ * Utility
+ * 
+ */
+
+function hidden(value){
+    document.getElementById(value).setAttribute("hidden", "true");
+}
+
+function show(value){
+    document.getElementById(value).removeAttribute("hidden");
+}
+
+function rows(value, tr){
+    
+    var td = document.createElement("td");
+    tr.appendChild(td).innerHTML=value;
 }

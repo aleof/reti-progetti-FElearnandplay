@@ -43,6 +43,9 @@ body{
 
     border:solid;
 }
+.searchDiv{
+    border: solid;
+}
 .login{/*limite 250% zoom*/
     margin-top: 5%;
     margin-right: 35%;
@@ -75,4 +78,28 @@ body{
 }
 .errormessage{
     color:red;
+}
+.successmessage{
+    color:green;
+}
+.divtable{
+    margin-left: 10%;
+    margin-right: 10%;
+    border: solid;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: right;/*solo per i numeri right, per le parole left*/
+
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
 }
