@@ -5,6 +5,7 @@ header{
     width: 100%;
     position:fixed;
     top:0;/*default non è zero*/
+    /*background-color: white;*/
     background-color: white;
 }
 .headerForm{
