@@ -341,37 +341,7 @@ function listapresentazioni(){
         document.getElementById("listaprenotazioni").removeAttribute("hidden");
         document.getElementById("listautente").innerHTML="Prenotazioni effettuate dall'utente: "+sessionStorage.getItem("User");
 
-        var count = 0;
-        var array;
-        var table = document.getElementById("table")
-        //var divtable = document.getElementById("divtable")
-        //var table = documen.createElement("table");
-
-        var tr = document.createElement("tr");
-        //tr.style.cssText="";
-        divtable.appendChild
-        table.appendChild(tr);
-        rows("Descrizione", tr);
-        rows("Quantita" , tr); //parseInt(array[i].quantita,10);
-        rows("Tipologia", tr);
-        rows("Data", tr);
-        rows("Ora", tr);
-
-        array = JSON.parse(localStorage.getItem("merci"));
-        for(var i=0; i<array.length; i++){
-            if(array[i].utente==sessionStorage.getItem("User")){
-                var tr = document.createElement("tr");
-                //tr.style.cssText="";
-                table.appendChild(tr);
-                rows(array[i].descrizioneOrdine, tr);
-                rows(array[i].quantita, tr); //parseInt(array[i].quantita,10);
-                rows(array[i].tipologia, tr);
-                rows(array[i].data, tr);
-                rows(array[i].ora, tr);
-                count++;
-            }
-        }
-        document.getElementById("quantitalista").innerHTML="Quantita prenotazioni: "+count;
+        creaTabella();
     }
     catch(Exception){
         alert("error");
@@ -437,84 +407,76 @@ function dettagliomerce(){
  */
 
 function searchOnTable() {
-  // Declare variables 
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("filtroTabella");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("table");
-  tr = table.getElementsByTagName("tr");
+    var filtroQuantita = document.getElementById("filtroQuantita").value.toUpperCase();
+    var filtroTipologia = document.getElementById("filtroTipologia").value.toUpperCase();
 
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 1; i < tr.length; i++) {
-    for(var l = 0; l < 5; l++){
-        td = tr[i].getElementsByTagName("td")[l];
-        if (td) {   
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-                break;
-            } else {
-                tr[i].style.display = "none";
+    var filter = document.getElementById("filtroTabella").value.toUpperCase(); 
+
+    var array = JSON.parse(localStorage.getItem("merci"));
+    var result= {utente:"", descrizioneOrdine:"", tipologia:"", quantita:"", data:"", ora:""}; 
+    var arrayresult= [];    
+
+    if(filtroQuantita!=="" || filtroTipologia!==""){
+        for(var i = 0; i<array.length; i++){
+            if((array[i].tipologia.toUpperCase()===filtroTipologia || filtroTipologia==="")
+                && (array[i].quantita.toUpperCase()===filtroQuantita || filtroQuantita==="")
+                /*&&*/){
+                arrayresult.push(creaUtente(array[i]));
+                continue;
             }
-        } 
+        }
+        document.getElementById("filtroQuantita").value="";
+        document.getElementById("filtroTipologia").value="";
     }
-  }
-}
-
-function searchOnColumn(ncolonna, tipocolonna) {
-  // Declare variables 
-  var input, filter, table, tr, td, i;
-  input = document.getElementById(tipocolonna);
-  filter = input.value.toUpperCase();
-  table = document.getElementById("table");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 1; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[ncolonna];
-    if (td) {   
-        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-        } else {
-            tr[i].style.display = "none";
-        }
-    } 
-  }
-}
-function advanceSearch() {
-  // Declare variables 
-  var input1, input2, filter1, filter2, table, tr, td, i;
-  input1 = document.getElementById("filtroQuantita");
-  input2 = document.getElementById("filtroTipologia");
-  filter1 = input1.value;
-  filter2 = input2.value.toUpperCase();
-  table = document.getElementById("table");
-  tr = table.getElementsByTagName("tr");
-
-  for (i = 1; i < tr.length; i++) {
-      //for(var l = 0; l < 5; l++){
-        td = tr[i].getElementsByTagName("td")[1];
-        if (td.innerHTML == (filter1)) {
-            td = tr[i].getElementsByTagName("td")[2];
-            if(td.innerHTML.toUpperCase() == (filter2) || filter2=="") {
-                tr[i].style.display = "";
+    else{
+        for(var i = 0; i<array.length; i++){
+            if(array[i].tipologia.toUpperCase().indexOf(filter)!== -1){
+                arrayresult.push(creaUtente(array[i]));
+                continue;
+            }else if(array[i].descrizioneOrdine.toUpperCase().indexOf(filter)!== -1){
+                arrayresult.push(creaUtente(array[i]));
+                continue;
             }
-            else {
-                tr[i].style.display = "none";
-            }   
+            else if(array[i].quantita.toUpperCase().indexOf(filter)!== -1){
+                arrayresult.push(creaUtente(array[i]));
+                continue;
+            }
+            else if(array[i].data.toUpperCase().indexOf(filter)!== -1){
+                arrayresult.push(creaUtente(array[i]));
+                continue;
+            }else if(array[i].ora.toUpperCase().indexOf(filter)!== -1){
+                arrayresult.push(creaUtente(array[i]));
+                continue;
+            }
         }
-        else {
-            tr[i].style.display = "none";
-        } 
-      }
-  }
+    }
+    creaTabella(arrayresult);
+}
+
+function creaUtente(obj){
+    var result = {utente:"", descrizioneOrdine:"", tipologia:"", quantita:"", data:"", ora:""};
+    result.utente=sessionStorage.getItem("User");//creaUtente(){}
+    result.descrizioneOrdine=obj.descrizioneOrdine;
+    result.tipologia=obj.tipologia;
+    result.quantita=obj.quantita;
+    result.data=obj.data;
+    result.ora=obj.ora;
+    return result;
+    //arrayresult.push(result);
+}
 
 function viewAdvanceSearch(){
     document.getElementById("advanceSearchDiv").removeAttribute("hidden"); 
+    document.getElementById("filtroTabella").value="";
+    searchOnTable();
+    document.getElementById("genericSearch").setAttribute("hidden", "true");
     document.getElementById("advanceSearchBut").setAttribute("hidden", "true");
 }
 
 function hiddenAdvanceSearch(){
+    searchOnTable();
     document.getElementById("advanceSearchBut").removeAttribute("hidden"); 
+    document.getElementById("genericSearch").removeAttribute("hidden");
     document.getElementById("advanceSearchDiv").setAttribute("hidden", "true");
 }
 
@@ -532,8 +494,71 @@ function show(value){
     document.getElementById(value).removeAttribute("hidden");
 }
 
-function rows(value, tr){
-    
+function rows(value, tr, int){
     var td = document.createElement("td");
+    switch(int){
+        case 1:
+            td.setAttribute("class","tdtext");
+            break;
+        case 2:
+            td.setAttribute("class","tdnum");
+            break;
+        case 3:
+            td.setAttribute("class","tdtext");
+            break;
+        case 4:
+            td.setAttribute("class","tddataora");
+            break;
+        case 5:
+            td.setAttribute("class","tddataora");
+            break;
+    }
     tr.appendChild(td).innerHTML=value;
+}
+function headerRows(value, tr){
+    var th = document.createElement("th");
+    tr.appendChild(th).innerHTML=value;
+}
+
+function contains(string){
+    string.includes(substring);
+}
+
+function creaTabella(search){
+    document.getElementById("table").remove();
+    document.getElementById("divtable").appendChild(document.createElement("table")).setAttribute("id", "table");
+
+    var count = 0;
+    var array;
+    var table = document.getElementById("table")
+    var tr = document.createElement("tr");
+
+    table.appendChild(tr);
+    headerRows("Descrizione", tr);
+    headerRows("Quantita" , tr); //parseInt(array[i].quantita,10);
+    headerRows("Tipologia", tr);
+    headerRows("Data",tr);
+    headerRows("Ora", tr);
+
+    if(search===undefined){
+        array = JSON.parse(localStorage.getItem("merci"));
+    }
+    else{
+        array = search;
+    }
+ 
+    for(var i=0; i<array.length; i++){
+        if(array[i].utente==sessionStorage.getItem("User")){
+            var tr = document.createElement("tr");
+            //tr.style.cssText="";
+            table.appendChild(tr);
+            rows(array[i].descrizioneOrdine, tr, 1);
+            rows(array[i].quantita, tr, 2); //parseInt(array[i].quantita,10);
+            rows(array[i].tipologia, tr, 3);
+            rows(array[i].data, tr, 4);
+            rows(array[i].ora, tr, 5);
+            count++;
+        }
+    }
+    document.getElementById("quantitalista").innerHTML="Quantita prenotazioni: "+count;
 }

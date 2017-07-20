@@ -126,17 +126,17 @@
             <p id="listautente">a</p>
             <p id="quantitalista">b</p>
             
-            <label for="filtroTabella">Cerca nella tabella:</label>
-            <input type="text" id="filtroTabella" name="filtroTabella" placeholder="Ricerca nella tabella..." onkeyup="searchOnTable()"/>
-            <br>
-            <br>
-
-            <!-- Ricerca Avanzata-->
-            <button id="advanceSearchBut" onclick="viewAdvanceSearch()">Ricerca Avanzata</button>
+            <div id="genericSearch">
+                <label for="filtroTabella">Cerca nella tabella:</label>
+                <input type="text" id="filtroTabella" name="filtroTabella" placeholder="Ricerca nella tabella..." onkeyup="searchOnTable()"/>    
+                <!-- Ricerca Avanzata-->
+                <!--<button id="advanceSearchBut" onclick="viewAdvanceSearch()" class="advanceSearchBut">Ricerca Avanzata</button>-->
+                <img id="advanceSearchBut" class="advanceSearchBut" src="../img/ricercaavanzata.png" title="Ricerca Avanzata" onclick="viewAdvanceSearch()">
+            </div>
             
             <div id="advanceSearchDiv" class="searchDiv" hidden>
                 <label for="filtroTabella">Filtra per quantità:</label>
-                <input type="text" id="filtroQuantita" name="filtroQuantita" placeholder="Inserisci un intero"> <!--onkeyup="searchOnColumn(1, 'filtroQuantita')"/>-->
+                <input type="text" id="filtroQuantita" name="filtroQuantita" placeholder="Inserisci un intero"></input> <!--onkeyup="searchOnColumn(1, 'filtroQuantita')"/>-->
                 <label for="filtroTabella">&nbsp Filtra per tipologia:</label>
                 <select type="text" id="filtroTipologia" name="filtroTipologia"><!-- onchange="searchOnColumn(2, 'filtroTipologia')">-->
                     <!--<option id="a" name="filtroTabella" onkeyup="">a</option>-->
@@ -148,13 +148,12 @@
                     <option value="Fai da te">Fai da te</option>
                     <option value="Abbigliamento">Abbigliamento</option>
                 </select>
-                <button onclick="advanceSearch()">&nbsp Ricerca</button>
-                <br>
-                <br>
-                <button onclick="hiddenAdvanceSearch()">&nbsp Nascondi ricerca avanzata</button>
-                <br>
+                <button onclick="searchOnTable()">&nbsp Ricerca</button>
+                <!--<button onclick="hiddenAdvanceSearch()">&nbsp Nascondi ricerca avanzata</button>-->
+                <img id="advanceSearchBut" class="advanceSearchBut" src="../img/ricercaavanzataexit.png" title="Nascondi Ricerca Avanzata" onclick="hiddenAdvanceSearch()">
                 <br>
             </div>
+            <br>
 
             <div id="divtable" class="divtable">
                 <table id="table">

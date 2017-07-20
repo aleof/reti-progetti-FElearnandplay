@@ -41,10 +41,10 @@ body{
     margin-right: 10%;
     margin-left: 10%;
 
-    border:solid;
+    border:none;
 }
 .searchDiv{
-    border: solid;
+    border: none;
 }
 .login{/*limite 250% zoom*/
     margin-top: 5%;
@@ -85,7 +85,7 @@ body{
 .divtable{
     margin-left: 10%;
     margin-right: 10%;
-    border: solid;
+    border: none;
 }
 table {
     font-family: arial, sans-serif;
@@ -93,13 +93,31 @@ table {
     width: 100%;
 }
 
-td, th {
-    border: 1px solid #dddddd;
-    text-align: right;/*solo per i numeri right, per le parole left*/
-
-    padding: 8px;
-}
-
 tr:nth-child(even) {
     background-color: #dddddd;
+}
+td {
+    border: 1px solid #dddddd;
+    text-align: right;/*solo per i numeri right, per le parole left*/
+    padding: 8px;
+}
+th {
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+.tdnum{
+    text-align: right;
+}
+
+.tddataora{
+    text-align: center;
+}
+
+.tdtext{
+    text-align: left;
+}
+.advanceSearchBut{
+    float:right;
+    width:30px;
+    height: 30px;
 }
