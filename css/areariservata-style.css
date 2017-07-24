@@ -40,7 +40,7 @@ body{
     margin-top: 5%;
     margin-right: 10%;
     margin-left: 10%;
-
+    font-family: sans-serif;
     border:none;
 }
 .searchDiv{
@@ -61,6 +61,7 @@ body{
     border-width: 1px;
     border-color: grey;
     background-color: white;
+    font-family: sans-serif;
 }
 .logout{
     width:40px;
@@ -78,33 +79,55 @@ body{
 }
 .errormessage{
     color:red;
+    /*display: none;*/
 }
 .successmessage{
     color:green;
 }
+input, select{
+    width: 50%;
+    max-width: 300px;
+    height: 2%;
+}
+
+.advanceSearchBut{
+    float:right;
+    width:30px;
+    height: 30px;
+}
+
 .divtable{
     margin-left: 10%;
     margin-right: 10%;
     border: none;
 }
-table {
+
+
+/**tabelle lista**/
+.table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-tr:nth-child(even) {
+.tr {
     background-color: #dddddd;
 }
-td {
+/*.tr:nth-child(even){
+    background-color: #dddddd;
+}*/
+.td {
     border: 1px solid #dddddd;
     text-align: right;/*solo per i numeri right, per le parole left*/
     padding: 8px;
+    width:20%;
 }
-th {
+.th {
     border: 1px solid #dddddd;
     padding: 8px;
-}
+    width:20%;
+}/**/
+
 .tdnum{
     text-align: right;
 }
@@ -116,8 +139,44 @@ th {
 .tdtext{
     text-align: left;
 }
-.advanceSearchBut{
-    float:right;
-    width:30px;
-    height: 30px;
+
+
+/*tabelle prenotazione*/
+.tablepr{
+    width: auto;
+}
+.trpr{
+    border:none;
+    background-color: transparent;
+    /*width: auto;*/
+}
+.tdpr{
+    border: none;
+    text-align: left;/*solo per i numeri right, per le parole left*/
+    padding: 18px;/*vorrei togliere il padding dall'input 18*/
+    /*min-height: 65px;*/
+}
+.tdprerror{
+    border:none;
+    /*width:20%;*/
+    /*height:10px;*/
+    display: block;    
+}
+.inputpr{
+    min-width:200px;
+}
+
+/*Delete Button*/
+.buttonColumn{
+    /*border:none;*/
+}
+.buttonDelete{
+    /*border: none;*/
+    background-color: aliceblue;
+    color: red;
+    padding: 8px;
+    font: bold;
+}
+.rowselected{
+    background-color: grey;
 }

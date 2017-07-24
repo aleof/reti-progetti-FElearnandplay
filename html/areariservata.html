@@ -7,7 +7,10 @@
 
         <link href="../css/areariservata-style.css" rel="stylesheet">
         
-        <script src="../js/areariservata.js"></script>
+        <script src="../js/areariservata-cas.js"></script>
+        <script src="../js/areariservata-filter.js"></script>
+        <script src="../js/areariservata-view.js"></script>
+        <script src="../js/areariservata-logic.js"></script>
         
         <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
     </head>
@@ -88,6 +91,7 @@
                 <p id="passworderr" class="errormessage" hidden>Le password non corrispondono</p>
             </form>
             <br>
+            <button class="button" type="button" onclick="annullasignupconfirm()">Annulla</button>
             <button class="button" type="button" onclick="signupconfirm()">Completa Registrazione</button>
         </div>
 
@@ -98,7 +102,8 @@
         <div id="prenotazione" class="div" hidden>
             <h2>Prenotazione</h2>
             <p id="prenotazioneeffettuata" class="successmessage" hidden >Complimenti prenotazione effettuata con successo!</p><br>
-            Descrizione Ordine: <input id="descrizioneOrdine"/><br>
+            
+            <!--Descrizione Ordine: <input id="descrizioneOrdine"/><br>
             <p id="nulldescrerr" class="errormessage" hidden >Campo obbligatorio</p><br>
             Tipologia: <select id="tipologia">
                 <option></option>
@@ -118,6 +123,45 @@
             <p id="nulloraerr" class="errormessage" hidden>Campo obbligatorio</p><br>
 
             <br>
+            <button class="button" type="button" onclick="prenota()">Completa Prenotazione</button>-->
+
+            <table class="tablepr">
+                <tr class="trpr">
+                    <td class="tdpr">Descrizione Ordine:</td> 
+                    <td class="tdpr"><input id="descrizioneOrdine" class="inputpr"/></td>
+                    <td class="tdprerror"><p id="nulldescrerr" class="errormessage" hidden >Campo obbligatorio</p></td>
+                </tr>
+                <tr class="trpr">
+                    <td class="tdpr">Tipologia:</td> 
+                    <td class="tdpr">
+                        <select id="tipologia" class="inputpr">
+                            <option></option>
+                            <option>Elettronica</option>
+                            <option>Sport</option>
+                            <option>Libri</option>
+                            <option>Cibo</option>
+                            <option>Fai da te</option>
+                            <option>Abbigliamento</option>
+                        </select>
+                    </td>
+                    <td class="tdprerror"><p id="nulltipologiaerr" class="errormessage" hidden>Campo obbligatorio</p></td>
+                </tr class="trpr">
+                <tr class="trpr">
+                    <td class="tdpr">Quantità:</td> 
+                    <td class="tdpr"><input id="quantita" type="number" class="inputpr"></td>
+                    <td class="tdprerror"><p id="nullquantitaerr" class="errormessage" hidden>Campo obbligatorio</p></td>
+                </tr>
+                <tr class="trpr">
+                    <td class="tdpr">Data:</td> 
+                    <td class="tdpr"><input id="data" type="date" class="inputpr"></td>
+                    <td class="tdprerror"><p id="nulldataerr" class="errormessage" hidden>Campo obbligatorio</p></td>
+                </tr>
+                <tr class="trpr">
+                    <td class="tdpr">Ora:</td> 
+                    <td class="tdpr"><input id="ora" type="time" class="inputpr"/></td>
+                    <td class="tdprerror"><p id="nulloraerr" class="errormessage" hidden>Campo obbligatorio</p></td>
+                </tr>
+            </table>
             <button class="button" type="button" onclick="prenota()">Completa Prenotazione</button>
         </div>
 
