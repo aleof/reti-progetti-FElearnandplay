@@ -9,25 +9,30 @@ header{
     border-width: 2px;
     background-color: white;
 }
+
 #navigationbar{
-    border-bottom: ridge;
+    /*border-bottom: ridge;
     border-width: 2px;
     margin: 0;
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 0px;
-    background-color: aliceblue;
+    background-color: aliceblue;*/
+    width:100%;
+    display: none;
 }
 ul{
      list-style-type: none;/*toglie la spunta*/
      overflow: auto;/*imposrtante per contenre la lista*/
      
      margin: 0;
-     padding: 0;
+     /*padding: 0;*/
+     padding-left: 10%;
+     border-bottom: ridge;
+     border-width: 2px;
 }
 li{
     float: left;/*verifica*/
-    
 }
 li p{
     display: block;
@@ -37,14 +42,16 @@ body{
     background-color: aliceblue;
 }
 .div{
-    margin-top: 5%;
+    margin-top: 1%;
     margin-right: 10%;
     margin-left: 10%;
     font-family: sans-serif;
     border:none;
+    display: none;
 }
 .searchDiv{
     border: none;
+    display: none;
 }
 .login{/*limite 250% zoom*/
     margin-top: 5%;
@@ -67,6 +74,25 @@ body{
     width:40px;
     height: 20px;
     float: right;
+    display:none;
+}
+.signup{/*limite 250% zoom*/
+    margin-top: 5%;
+    margin-right: 35%;
+    margin-left: 35%;
+    padding-bottom: 50px;
+
+    text-align:center;
+    /*display:table-cell; vertical-align:middle; */
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);/*ombra*/
+
+    border:solid;
+    border-width: 1px;
+    border-color: grey;
+    background-color: white;
+    font-family: sans-serif;
+    display: none;
 }
 .button{
     outline: none;
@@ -79,10 +105,11 @@ body{
 }
 .errormessage{
     color:red;
-    /*display: none;*/
+    display: none;
 }
 .successmessage{
     color:green;
+    display: none;
 }
 input, select{
     width: 50%;
@@ -99,7 +126,10 @@ input, select{
 .divtable{
     margin-left: 10%;
     margin-right: 10%;
+    margin-bottom: 5%;
+    margin-top: 2%;
     border: none;
+    /*display:none;*/
 }
 
 
@@ -109,7 +139,6 @@ input, select{
     border-collapse: collapse;
     width: 100%;
 }
-
 .tr {
     background-color: #dddddd;
 }
@@ -168,15 +197,43 @@ input, select{
 
 /*Delete Button*/
 .buttonColumn{
-    /*border:none;*/
+    border:none;
+    outline: none;
 }
-.buttonDelete{
+.buttonManagerTable{
     /*border: none;*/
+    cursor: pointer;
     background-color: aliceblue;
     color: red;
     padding: 8px;
     font: bold;
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+}
+.tdbutton{
+    border: none;
 }
 .rowselected{
-    background-color: grey;
+    background-color: grey;/*perchè non va???*/
+}
+.buttonDelete{
+    border:none;
+    outline: none;
+    visibility: hidden;
+    background-color: aliceblue;
+    color: aliceblue;
+}
+.buttonModify{
+    /*border: none;*/
+    cursor: pointer;
+    background-color: aliceblue;
+    color: red;
+    padding: 8px;
+    font: bold;
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
 }

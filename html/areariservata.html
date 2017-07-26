@@ -18,30 +18,30 @@
         <header >
             <div>
                 <img src="../img/reti.png">
-                <img id="logout" class="logout" src="../img/logout.png" hidden onclick="esci()"><!--alert che chiede conferma di uscita-->
+                <img id="logout" class="logout" src="../img/logout.png" onclick="esci()"><!--alert che chiede conferma di uscita-->
             </div>
         </header> 
 
-        <div id="navigationbar" hidden ><!--onclick-->
+        <div id="navigationbar"><!--onclick-->
                 <ul>
                     <li><button class="menuButton" onclick="paginainiziale()">paginainiziale</button></li>
                     <li><button class="menuButton" onclick="listapresentazioni()">listaprenotazioni</button></li>
                     <li><button class="menuButton" onclick="prenotazione()">prenotazione</button></li>
-                    <li><button class="menuButton" onclick="gestionemerce()">gestionemerce</button></li>
-                    <li><button class="menuButton" onclick="dettagliomerce()">dettagliomerce</button></li>
+                    <li><button class="menuButton" onclick="gestioneprenotazioni()">gestioneprenotazioni</button></li>
+                    <li><button class="menuButton" onclick="gestioneprenotazioniADMIN()">gestioneprenotazioniADMIN</button></li>
                 </ul>
         </div>
-
+        <br>
         <div id="login" class="login" name="visible">
             <form name"loginform" method="POST">  <!--alert("ok"); -->
                 <p>Effettua l'accesso</p>
                
                 <input id="user" placeholder="Email"/>
-                <p id="emailerrore" class="errormessage" hidden>Email errata o non esistente (Campo Obbligatorio)</p>
+                <p id="emailerrore" class="errormessage">Email errata o non esistente (Campo Obbligatorio)</p>
                 <br>
                 <br>
                 <input id="password" placeholder="Password" type="password"/>
-                <p id="passworderrore" class="errormessage" hidden>Password errata</p>
+                <p id="passworderrore" class="errormessage">Password errata</p>
                 <br>
                 <br>
                 <button class="button" type="button" onclick="accesso()">Accedi</button> <!--type = "button" prevent refresh page-->
@@ -53,34 +53,34 @@
             </form>
         </div>
 
-        <div id="signup" class="login" hidden>
+        <div id="signup" class="signup">
             <h2>Registrazione</h2>
             <form>
                 <br>
                 <input id="nome" placeholder="Nome"/>
-                <p id="nullnomeerr" class="errormessage" hidden>Campo obbligatorio</p>
+                <p id="nullnomeerr" class="errormessage">Campo obbligatorio</p>
             </form>
             <form>
                 <br>
                 <input id="cognome" placeholder="Cognome"/>
-                <p id="nullcognomeerr" class="errormessage" hidden>Campo obbligatorio</p>
+                <p id="nullcognomeerr" class="errormessage">Campo obbligatorio</p>
             </form>
             <form>
                 <br>
                 <input id="email" placeholder="Email"/>
-                <p id="nullemailerr" class="errormessage" hidden>Campo obbligatorio</p>
-                <p id="emailerr" class="errormessage" hidden>
+                <p id="nullemailerr" class="errormessage">Campo obbligatorio</p>
+                <p id="emailerr" class="errormessage">
                     Email già presente nel sistema!
                 </p>
-                <p id="formatemailerr" class="errormessage" hidden>
+                <p id="formatemailerr" class="errormessage">
                     Formato email errato. Immetti l'indirizzo e-mail nel formato prova@example.com.
                 </p>
             </form>
             <form>
                 <br>
                 <input id="newpassword" placeholder="password" type="password"/>
-                <p id="nullpassworderr" class="errormessage" hidden>Campo obbligatorio</p>
-                <p id="formatpassworderr" class="errormessage" hidden>
+                <p id="nullpassworderr" class="errormessage">Campo obbligatorio</p>
+                <p id="formatpassworderr" class="errormessage">
                     Le password devono contenere almeno 8 caratteri e includere almeno due dei seguenti: 
                     lettere maiuscole, lettere minuscole, numeri e simboli.
                 </p>
@@ -88,23 +88,23 @@
             <form>
                 <br>
                 <input id="password2" placeholder="Conferma Password" type="password"/>
-                <p id="passworderr" class="errormessage" hidden>Le password non corrispondono</p>
+                <p id="passworderr" class="errormessage">Le password non corrispondono</p>
             </form>
             <br>
             <button class="button" type="button" onclick="annullasignupconfirm()">Annulla</button>
             <button class="button" type="button" onclick="signupconfirm()">Completa Registrazione</button>
         </div>
 
-        <div id="paginainiziale" class="div" hidden><!-- filtra per diversi campi -->
+        <div id="paginainiziale" class="div"><!-- filtra per diversi campi -->
             <h2>Pagina Iniziale</h2>
         </div>
 
-        <div id="prenotazione" class="div" hidden>
+        <div id="prenotazione" class="div">
             <h2>Prenotazione</h2>
-            <p id="prenotazioneeffettuata" class="successmessage" hidden >Complimenti prenotazione effettuata con successo!</p><br>
+            <p id="prenotazioneeffettuata" class="successmessage">Complimenti prenotazione effettuata con successo!</p><br>
             
             <!--Descrizione Ordine: <input id="descrizioneOrdine"/><br>
-            <p id="nulldescrerr" class="errormessage" hidden >Campo obbligatorio</p><br>
+            <p id="nulldescrerr" class="errormessage">Campo obbligatorio</p><br>
             Tipologia: <select id="tipologia">
                 <option></option>
                 <option>Elettronica</option>
@@ -129,7 +129,7 @@
                 <tr class="trpr">
                     <td class="tdpr">Descrizione Ordine:</td> 
                     <td class="tdpr"><input id="descrizioneOrdine" class="inputpr"/></td>
-                    <td class="tdprerror"><p id="nulldescrerr" class="errormessage" hidden >Campo obbligatorio</p></td>
+                    <td class="tdprerror"><p id="nulldescrerr" class="errormessage">Campo obbligatorio</p></td>
                 </tr>
                 <tr class="trpr">
                     <td class="tdpr">Tipologia:</td> 
@@ -144,28 +144,28 @@
                             <option>Abbigliamento</option>
                         </select>
                     </td>
-                    <td class="tdprerror"><p id="nulltipologiaerr" class="errormessage" hidden>Campo obbligatorio</p></td>
+                    <td class="tdprerror"><p id="nulltipologiaerr" class="errormessage">Campo obbligatorio</p></td>
                 </tr class="trpr">
                 <tr class="trpr">
                     <td class="tdpr">Quantità:</td> 
                     <td class="tdpr"><input id="quantita" type="number" class="inputpr"></td>
-                    <td class="tdprerror"><p id="nullquantitaerr" class="errormessage" hidden>Campo obbligatorio</p></td>
+                    <td class="tdprerror"><p id="nullquantitaerr" class="errormessage">Campo obbligatorio</p></td>
                 </tr>
                 <tr class="trpr">
                     <td class="tdpr">Data:</td> 
                     <td class="tdpr"><input id="data" type="date" class="inputpr"></td>
-                    <td class="tdprerror"><p id="nulldataerr" class="errormessage" hidden>Campo obbligatorio</p></td>
+                    <td class="tdprerror"><p id="nulldataerr" class="errormessage">Campo obbligatorio</p></td>
                 </tr>
                 <tr class="trpr">
                     <td class="tdpr">Ora:</td> 
                     <td class="tdpr"><input id="ora" type="time" class="inputpr"/></td>
-                    <td class="tdprerror"><p id="nulloraerr" class="errormessage" hidden>Campo obbligatorio</p></td>
+                    <td class="tdprerror"><p id="nulloraerr" class="errormessage">Campo obbligatorio</p></td>
                 </tr>
             </table>
             <button class="button" type="button" onclick="prenota()">Completa Prenotazione</button>
         </div>
 
-        <div id="listaprenotazioni" class="div" hidden><!-- filtra per diversi campi -->
+        <div id="listaprenotazioni" class="div"><!-- filtra per diversi campi -->
             <h2>Lista Prenotazioni</h2>
             <p id="listautente">a</p>
             <p id="quantitalista">b</p>
@@ -178,7 +178,7 @@
                 <img id="advanceSearchBut" class="advanceSearchBut" src="../img/ricercaavanzata.png" title="Ricerca Avanzata" onclick="viewAdvanceSearch()">
             </div>
             
-            <div id="advanceSearchDiv" class="searchDiv" hidden>
+            <div id="advanceSearchDiv" class="searchDiv">
                 <label for="filtroTabella">Filtra per quantità:</label>
                 <input type="text" id="filtroQuantita" name="filtroQuantita" placeholder="Inserisci un intero"></input> <!--onkeyup="searchOnColumn(1, 'filtroQuantita')"/>-->
                 <label for="filtroTabella">&nbsp Filtra per tipologia:</label>
@@ -208,12 +208,50 @@
             </div>
         </div>
 
-        <div id="gestionemerce" class="div" hidden>
-            <h2>Gestione Merce</h2>
+        <div id="gestioneprenotazioni" class="div">
+            <h2>Gestione Prenotazioni</h2>
+            <p id="listautentegestione"></p>
+            <p id="gesquantitalista"></p>
+            
+            <div id="genericSearch2">
+                <label for="filtroTabella2">Cerca nella tabella:</label>
+                <input type="text" id="filtroTabella2" name="filtroTabella2" placeholder="Ricerca nella tabella..." onkeyup="searchOnTable2()"/>    
+                <!-- Ricerca Avanzata-->
+                <!--<button id="advanceSearchBut" onclick="viewAdvanceSearch()" class="advanceSearchBut">Ricerca Avanzata</button>-->
+                <img id="advanceSearchBut2" class="advanceSearchBut" src="../img/ricercaavanzata.png" title="Ricerca Avanzata" onclick="viewAdvanceSearch2()">
+            </div>
+            
+            <div id="advanceSearchDiv2" class="searchDiv">
+                <label for="filtroTabella2">Filtra per quantità:</label>
+                <input type="text" id="filtroQuantita2" name="filtroQuantita2" placeholder="Inserisci un intero"></input> <!--onkeyup="searchOnColumn(1, 'filtroQuantita')"/>-->
+                <label for="filtroTabella2">&nbsp Filtra per tipologia:</label>
+                <select type="text" id="filtroTipologia2" name="filtroTipologia2"><!-- onchange="searchOnColumn(2, 'filtroTipologia')">-->
+                    <!--<option id="a" name="filtroTabella" onkeyup="">a</option>-->
+                    <option value="">all</option>
+                    <option value="Elettronica">Elettronica</option>
+                    <option value="Sport">Sport</option>
+                    <option value="Libri">Libri</option>
+                    <option value="Cibo">Cibo</option>
+                    <option value="Fai da te">Fai da te</option>
+                    <option value="Abbigliamento">Abbigliamento</option>
+                </select>
+                <button onclick="searchOnTable2()">&nbsp Ricerca</button>
+                <!--<button onclick="hiddenAdvanceSearch()">&nbsp Nascondi ricerca avanzata</button>-->
+                <img id="advanceSearchBut2" class="advanceSearchBut" src="../img/ricercaavanzataexit.png" title="Nascondi Ricerca Avanzata" onclick="hiddenAdvanceSearch2()">
+            </div>
+
+            <div id="divgestable" class="divtable">
+                <br>
+                <table id="gestable">
+                    <!--<tr><td>Descrizione</td><td>Quantità</td><td>Tipologia</td><td>Data</td><td>ora</td></tr>-->
+                    <!--<tr><td>Dato 1,1</td><td>Dato 1,2</td><td>Dato 1,3</td><td>Dato 1,4</td><td>Dato 1,5</td></tr>
+                    <tr><td>Dato 2,1</td><td>Dato 2,2</td><td>Dato 2,3</td><td>Dato 2,4</td><td>Dato 2,5</td></tr>-->
+                </table>
+            </div>
         </div>
 
-        <div id="dettagliomerce" class="div" hidden>
-            <h2>Dettaglio Merce</h2>
+        <div id="gestioneprenotazioniADMIN" class="div">
+            <h2>Gestione Prenotazioni ADMIN</h2>
         </div>
     </body>
 </html>
